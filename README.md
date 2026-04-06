@@ -1,12 +1,71 @@
-# React + Vite
+# Finance Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern financial tracking dashboard focused on clean UI, smooth interactions, and clear data visualization.  
+Built with **React, Redux Toolkit, and Tailwind CSS**, with **GSAP micro-animations** to enhance the user experience.
 
-Currently, two official plugins are available:
+The goal of this project was to create a fast, responsive, and visually polished dashboard that helps track financial activity in a simple and organized way.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ⚡ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Real-time Analytics**  
+Automatically calculates key financial metrics such as **Burn Rate, Net Liquidity, and Inflow/Outflow**.
+
+**Transaction Export**  
+Generate a **CSV audit report** of all transaction records with a single click.
+
+**Clean User Experience**  
+Includes smooth **scroll-to-top navigation** and persistent state using Redux.
+
+**Dark Mode Interface**  
+Minimal, modern dark theme designed for comfortable viewing and better focus.
+
+**Responsive Layout**  
+Fully responsive design that works smoothly across **mobile, tablet, and large desktop screens**.
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend:** React.js (Vite)  
+**State Management:** Redux Toolkit (RTK)  
+**Styling:** Tailwind CSS  
+**Icons** GSAP, Lucide React  
+**Routing:** React Router DOM v6  
+
+---
+
+## 📂 Project Structure
+
+src/
+├── components/   # Reusable UI components (Sidebar, Header, Charts)  
+├── pages/        # Main pages (Dashboard, Transactions, Insights, Settings)  
+├── store/        # Redux slices and finance logic  
+├── routes/       # Centralized routing configuration  
+└── utils/        # Helper functions and scroll utilities  
+
+---
+
+## 🚀 Setup
+
+### 1. Clone the repository
+git clone https://github.com/coder-abhilash01/Finance-Tracking-Dashboard.git
+cd finance-dashboard  
+
+### 2. Install dependencies
+npm install  
+
+### 3. Run the development server
+npm run dev  
+
+---
+
+
+Live Link - https://finance-tracking-dashboard.vercel.app
+
+
+## 👤 Author
+
+**Abhilash Tiwari**  
+MERN Stack Developer passionate about building clean interfaces, smooth interactions, and modern web experiences.
