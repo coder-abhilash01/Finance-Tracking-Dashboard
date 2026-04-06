@@ -1,12 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, ShieldCheck, User, MenuIcon, Wallet } from 'lucide-react'
+import { setRole, toggleMobileMenu } from '@/store/financesSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button } from './ui/button';
 
 const Header = () => {
-  // Check initial state to sync icon with theme
-  const [isDark, setIsDark] = useState(
-    document.documentElement.classList.contains("dark")
-  );
+  const [isDark, setIsDark] = useState(false);
+  const dispatch = useDispatch();
+  const { role } = useSelector(state => state.finance);
+
+  useEffect(() => {
+    // Theme initialization
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      setIsDark(true);
+    }
+    
+    // Role synchronization with LocalStorage
+    const savedRole = localStorage.getItem("role");
+    if (savedRole && savedRole !== role) {
+      dispatch(setRole(savedRole));
+    }
+  }, []);
 
   const toggleTheme = () => {
     const isNowDark = document.documentElement.classList.toggle("dark");
@@ -14,31 +30,74 @@ const Header = () => {
     localStorage.setItem("theme", isNowDark ? "dark" : "light");
   };
 
+  const handleRoleToggle = (newRole) => {
+    localStorage.setItem("role", newRole);
+    dispatch(setRole(newRole));
+  };
+
   return (
-    <nav className='w-full bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 p-4 md:p-6 shadow-sm dark:shadow-white/5 border-b border-zinc-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between transition-colors duration-300'>
+    <nav className='w-full bg-white dark:bg-[#090F0C] text-zinc-900 dark:text-zinc-100 p-4 md:px-8 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between sm:justify-end sticky top-0 z-30'>
       
-      <h1 className="text-xl font-bold tracking-tight">Finance<span className="text-blue-600">App</span></h1>
 
-      <ul className="flex space-x-8 mt-4 md:mt-0 font-medium text-sm">
-        <Link to="/" className="hover:text-blue-600 transition-colors">Dashboard</Link>
-        <Link to="/transactions" className="hover:text-blue-600 transition-colors">Transactions</Link>
-        <Link to="/insights" className="hover:text-blue-600 transition-colors">Insights</Link>
-      </ul>
-
-      {/* PREMIUM TOGGLE BUTTON */}
-      <button 
-        onClick={toggleTheme} 
-        className="mt-4 md:mt-0 relative inline-flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:ring-2 ring-blue-500/20 transition-all duration-300 group overflow-hidden"
-      >
-        {/* Sun Icon (Visible in Light Mode) */}
-        <Sun className={`h-5 w-5 text-orange-500 transition-all duration-500 ${isDark ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'}`} />
+  
         
-        {/* Moon Icon (Visible in Dark Mode) */}
-        <Moon className={`absolute h-5 w-5 text-blue-400 transition-all duration-500 ${isDark ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`} />
-        
-        <span className="sr-only">Toggle Theme</span>
-      </button>
+                <div className=" sm:hidden flex items-center gap-3 ">
+                    <div className="bg-emerald-500 p-2 rounded-xl text-white shadow-md shadow-emerald-500/20">
+                        <Wallet size={24} />
+                    </div>
+                        <span className="font-bold text-xl tracking-tight whitespace-nowrap">FinanceApp</span>
+                  
+                </div>
+     
 
+      <div className="flex items-center gap-4  ">
+        
+     
+        <div className="hidden md:flex items-center bg-zinc-100 dark:bg-zinc-900 p-1 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-inner">
+          <button 
+            onClick={() => handleRoleToggle("user")}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer 
+              ${role === "user" 
+                ? 'bg-white dark:bg-zinc-800 shadow-sm text-emerald-500 scale-105' 
+                : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'}`}
+          >
+            <User size={14} /> 
+            <span className="hidden sm:inline text-[11px] uppercase tracking-wider">User</span>
+          </button>
+
+          <button 
+            onClick={() => handleRoleToggle("admin")}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer
+              ${role === "admin" 
+                ? 'bg-white dark:bg-zinc-800 shadow-sm text-emerald-500 scale-105' 
+                : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'}`}
+          >
+            <ShieldCheck size={14} /> 
+            <span className="hidden sm:inline text-[11px] uppercase tracking-wider">Admin</span>
+          </button>
+        </div>
+
+    
+        <button 
+          onClick={toggleTheme} 
+          className="relative h-10 w-10 flex items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:ring-2 ring-emerald-500/20 transition-all duration-300 group overflow-hidden"
+          aria-label="Toggle Theme"
+        >
+          <Sun className={`h-5 w-5 text-orange-500 transition-all duration-500 ${isDark ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'}`} />
+          <Moon className={`absolute h-5 w-5 text-blue-400 transition-all duration-500 ${isDark ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`} />
+        </button>
+
+     
+        <Button 
+          variant="outline" 
+          size="icon" 
+          className="md:hidden border-zinc-200 dark:border-zinc-800 bg-transparent"
+          onClick={() => dispatch(toggleMobileMenu())}
+        >
+          <MenuIcon size={20} />
+        </Button>
+
+      </div>
     </nav>
   )
 }

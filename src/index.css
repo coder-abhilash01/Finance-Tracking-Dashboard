@@ -6,9 +6,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
-  /* Smooth transition when switching themes */
+
   html {
-    transition: background-color 0.8s ease, color 0.3s ease;
     @apply font-sans;
   }
   * {
