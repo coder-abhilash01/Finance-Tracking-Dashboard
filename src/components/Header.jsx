@@ -3,6 +3,7 @@ import { Sun, Moon, ShieldCheck, User, MenuIcon, Wallet } from 'lucide-react'
 import { setRole, toggleMobileMenu } from '@/store/financesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from './ui/button';
+import RoleToggle from './RoleToggle';
 
 const Header = () => {
   const [isDark, setIsDark] = useState(false);
@@ -10,14 +11,13 @@ const Header = () => {
   const { role } = useSelector(state => state.finance);
 
   useEffect(() => {
-    // Theme initialization
     const theme = localStorage.getItem("theme");
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
       setIsDark(true);
     }
     
-    // Role synchronization with LocalStorage
+  
     const savedRole = localStorage.getItem("role");
     if (savedRole && savedRole !== role) {
       dispatch(setRole(savedRole));
@@ -53,35 +53,14 @@ const Header = () => {
       <div className="flex items-center gap-4  ">
         
      
-        <div className="hidden md:flex items-center bg-zinc-100 dark:bg-zinc-900 p-1 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-inner">
-          <button 
-            onClick={() => handleRoleToggle("user")}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer 
-              ${role === "user" 
-                ? 'bg-white dark:bg-zinc-800 shadow-sm text-emerald-500 scale-105' 
-                : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'}`}
-          >
-            <User size={14} /> 
-            <span className="hidden sm:inline text-[11px] uppercase tracking-wider">User</span>
-          </button>
-
-          <button 
-            onClick={() => handleRoleToggle("admin")}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer
-              ${role === "admin" 
-                ? 'bg-white dark:bg-zinc-800 shadow-sm text-emerald-500 scale-105' 
-                : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'}`}
-          >
-            <ShieldCheck size={14} /> 
-            <span className="hidden sm:inline text-[11px] uppercase tracking-wider">Admin</span>
-          </button>
-        </div>
+      
+        <RoleToggle className="hidden md:flex"/>
 
     
         <button 
           onClick={toggleTheme} 
-          className="relative h-10 w-10 flex items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:ring-2 ring-emerald-500/20 transition-all duration-300 group overflow-hidden"
-          aria-label="Toggle Theme"
+          className="relative h-10 w-10 flex items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:ring-2 cursor-pointer ring-emerald-500/20 transition-all duration-300 group overflow-hidden"
+          aria-label="Toggle Theme "
         >
           <Sun className={`h-5 w-5 text-orange-500 transition-all duration-500 ${isDark ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'}`} />
           <Moon className={`absolute h-5 w-5 text-blue-400 transition-all duration-500 ${isDark ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`} />

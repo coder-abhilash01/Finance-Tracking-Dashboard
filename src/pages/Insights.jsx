@@ -53,7 +53,7 @@ const Insights = () => {
 
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
         <div>
-          <h1 className="text-3xl font-black tracking-tight flex items-center gap-3">
+          <h1 className=" text-2xl sm:text-3xl font-black tracking-tight flex items-center gap-3">
             <Activity className="text-emerald-500" size={28} /> Performance Insights
           </h1>
           <p className="text-zinc-500 text-sm mt-1 font-medium">Real-time capital allocation and burn rate analysis.</p>

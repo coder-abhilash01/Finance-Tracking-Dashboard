@@ -13,7 +13,42 @@
   * {
     @apply border-border outline-ring/50;}
   body {
-    @apply bg-background text-foreground;}}
+    @apply bg-background text-foreground;}
+  
+  
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d1d5db; 
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #3f3f46; 
+  border: 2px solid #090f0c; 
+  background-clip: content-box;
+}
+
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+.dark * {
+  scrollbar-color: #3f3f46 transparent;
+}}
 
 @theme inline {
   --font-heading: var(--font-sans);

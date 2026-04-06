@@ -4,6 +4,7 @@ import DashBoard from '../pages/DashBoard'
 import Insights from '../pages/Insights'
 import Transaction from '../pages/Transaction'
 import Settings from '@/pages/Settings'
+import PageNotFound from '@/components/PageNotFound'
 
 const MainRoutes = () => {
   return (
@@ -12,6 +13,8 @@ const MainRoutes = () => {
    <Route path='/transaction' element={<Transaction/>}/>
       <Route path='/insights' element={<Insights/>}/>
       <Route path='/settings' element={<Settings/>}/>
+
+      <Route path="*" element={<PageNotFound />}/>
   </Routes>
   )
 }

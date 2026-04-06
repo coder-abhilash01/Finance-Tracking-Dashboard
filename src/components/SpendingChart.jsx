@@ -41,6 +41,7 @@ const SpendingChart = ({ transactions }) => {
             ))}
           </Pie>
           <Tooltip 
+          wrapperStyle={{ zIndex: 100 }}
             contentStyle={{ backgroundColor: '#18181b', border: 'none', borderRadius: '8px' }}
           />
           

@@ -12,15 +12,15 @@ const RecentTransactions = () => {
   const recentTransactions = [...transactions].slice(-5).reverse();
 
   return (
-    <div className="mt-8 bg-white dark:bg-[#0E1511] border border-zinc-200 dark:border-[#142929] text-black dark:text-white shadow-sm rounded-2xl p-6 transition-all">
+    <div className="mt-8 bg-white dark:bg-[#0E1511] border border-zinc-200 dark:border-[#142929] text-black dark:text-white shadow-sm rounded-2xl py-6 px-4 transition-all">
       
 
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold tracking-tight">Recent Transactions</h2>
+        <h2 className="text-lg font-bold tracking-tight">Recent Transactions</h2>
         {transactions.length > 0 && (
           <Link 
             to="/transaction" 
-            className="text-xs font-bold flex items-center gap-1.5 bg-zinc-50 dark:bg-[#131d18] hover:bg-zinc-100 dark:hover:bg-[#1a2721] border border-zinc-200 dark:border-zinc-800 shadow-sm px-4 py-2 rounded-xl transition-all active:scale-95"
+            className="text-xs font-bold flex items-center text-nowrap gap-1.5 bg-zinc-50 dark:bg-[#131d18] hover:bg-zinc-100 dark:hover:bg-[#1a2721] border border-zinc-200 dark:border-zinc-800 shadow-sm px-3 py-2 rounded-xl transition-all active:scale-95"
           >
             View All <MoveRight size={14}/>
           </Link>

@@ -15,7 +15,7 @@ const SummaryCard = ({ title, value, color, icon: Icon, trend }) => {
           </h2>
           
           <div className="flex flex-col">
-            <p className={`text-3xl font-black tracking-wide ${color}`}>
+            <p className={`text-2xl xl:text-3xl font-black tracking-wide ${color}`}>
               ₹{value.toLocaleString('en-IN')}
             </p>
             

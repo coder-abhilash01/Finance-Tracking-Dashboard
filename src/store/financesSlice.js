@@ -26,7 +26,7 @@ const financeSlice = createSlice({
     initialState,
 reducers: {
     addTransaction : (state, action) => {
-        console.log(action.payload);
+    
         state.transactions.push(action.payload)
         localStorage.setItem("transactions", JSON.stringify(state.transactions))
     },
@@ -36,7 +36,7 @@ reducers: {
     setRole : (state, action)=>{
         
         state.role = action.payload
-        console.log(state.role);
+    
     },
     
     deleteTransaction: (state, action) => {
@@ -48,11 +48,11 @@ reducers: {
 
 toggleMobileMenu: (state) => {
             state.isMobileMenuOpen = true;
-            console.log(state.isMobileMenuOpen);
+
         },
         closeMobileMenu: (state) => {
             state.isMobileMenuOpen = false;
-            console.log(state.isMobileMenuOpen);
+
         }
 
 
