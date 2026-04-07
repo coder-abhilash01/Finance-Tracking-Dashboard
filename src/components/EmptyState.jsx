@@ -1,5 +1,6 @@
 import { FileText } from 'lucide-react'
 import React from 'react'
+import { Button } from './ui/button'
 
 const EmptyState = ({transactions,setSearch, search, role , setOpen}) => {
   return (

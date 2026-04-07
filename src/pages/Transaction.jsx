@@ -94,12 +94,19 @@ const Transaction = () => {
 
       <div className="bg-white dark:bg-[#0E1511] border border-zinc-200 dark:border-[#142929] rounded-2xl overflow-hidden shadow-xl shadow-black/5 ">
 
-        <TransactionTable filteredTransactions={filteredTransactions} />
-
-
-        {filteredTransactions.length === 0 && (
-          <EmptyState transactions={transactions} setSearch={setSearch} search={search} role={role} setOpen={setOpen} />
-        )}
+       {filteredTransactions.length > 0 ? (
+    /* Agar transactions hain, toh table dikhao */
+    <TransactionTable filteredTransactions={filteredTransactions} />
+  ) : (
+    /* Agar zero hain, toh sirf EmptyState dikhao (Headers bhi gayab ho jayenge) */
+    <EmptyState 
+      transactions={transactions} 
+      setSearch={setSearch} 
+      search={search} 
+      role={role} 
+      setOpen={setOpen} 
+    />
+  )}
       </div>
     </div>
   )
